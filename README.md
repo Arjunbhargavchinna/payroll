@@ -75,6 +75,31 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Mobile-friendly interface
 - Modern card-based layouts
 
+### 🕒 Attendance Management
+- Daily attendance tracking
+- Bulk attendance marking
+- Attendance reports and analytics
+- Integration with payroll processing
+- Mobile-friendly attendance interface
+
+### ⚙️ System Configuration
+- General settings (company info, currency, timezone)
+- Payroll settings (PF/ESI rates, tax configuration)
+- Email settings (SMTP configuration)
+- Security settings (session timeout, password policies)
+- Backup management (automated and manual backups)
+
+### 🎯 Advanced Features
+- Cost center management for financial tracking
+- Tax slab configuration for different financial years
+- Custom report builder with flexible data selection
+- Payslip management with email delivery
+- Multi-format export capabilities (Excel, CSV, PDF)
+- Real-time dashboard widgets and analytics
+- **Notification system** with real-time updates
+- **Comprehensive backup** and restore functionality
+- **Advanced reporting** with custom report builder
+
 ## 🛠️ Technical Architecture
 
 ### Core Technologies
@@ -100,7 +125,7 @@ payroll-system/
 ├── uploads/                # File uploads
 ├── docs/                   # Documentation
 ├── lang/                   # Language files
-├── database.sql           # Database schema
+├── supabase/migrations/   # Database migrations
 └── README.md              # This file
 ```
 
@@ -241,6 +266,9 @@ define('RECORDS_PER_PAGE', 25);
 - **Data Protection**: SQL injection prevention with PDO
 - **CSRF Protection**: Token-based request validation
 - **Input Validation**: Server-side data sanitization
+- **Backup Management**: Automated and manual backup creation
+- **Notification Management**: System-wide notification configuration
+- **Notification System**: Real-time notifications and alerts
 - **Password Security**: BCrypt hashing
 - **Audit Trail**: Complete activity logging
 

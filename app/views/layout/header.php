@@ -6,6 +6,8 @@
     <title><?php echo $title ?? 'Payroll Management System'; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="<?php echo isset($csrf_token) ? $csrf_token : ''; ?>">
+    <meta name="user-id" content="<?php echo $_SESSION['user_id'] ?? ''; ?>">
     <script>
         tailwind.config = {
             theme: {
@@ -60,6 +62,26 @@
                             <i class="fas fa-chart-bar mr-2"></i>
                             Reports
                         </a>
+                        
+                        <a href="/attendance" class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], '/attendance') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'; ?> inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Attendance
+                        </a>
+                        
+                        <a href="/loans" class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], '/loans') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'; ?> inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-hand-holding-usd mr-2"></i>
+                            Loans
+                        </a>
+                        
+                        <a href="/pf" class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], '/pf') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'; ?> inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-piggy-bank mr-2"></i>
+                            PF Management
+                        </a>
+                        
+                        <a href="/esi" class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], '/esi') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'; ?> inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-shield-alt mr-2"></i>
+                            ESI Management
+                        </a>
                         <?php endif; ?>
                         
                         <!-- Masters Dropdown -->
@@ -78,6 +100,13 @@
                                     <a href="/loan-types" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Loan Types</a>
                                     <a href="/leave-types" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Leave Types</a>
                                     <a href="/holidays" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Holidays</a>
+                                    <a href="/cost-centers" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cost Centers</a>
+                                    <a href="/tax-slabs" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tax Slabs</a>
+                                    <?php if (isset($_SESSION['permissions']) && (str_contains($_SESSION['permissions'], 'users') || $_SESSION['permissions'] === 'all')): ?>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="/users" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">User Management</a>
+                                        <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">System Settings</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +114,28 @@
                 </div>
                 
                 <!-- User Menu -->
+                    <!-- Notifications -->
+                    <div class="relative">
+                        <button type="button" class="p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 rounded-full" onclick="toggleDropdown('notifications-dropdown')">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span class="notification-badge absolute -top-1 -right-1 block h-4 w-4 rounded-full bg-red-400 text-xs text-white text-center leading-4 hidden" id="notification-count">0</span>
+                        </button>
+                        
+                        <div id="notifications-dropdown" class="hidden absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <div class="px-4 py-2 text-sm font-semibold text-gray-900 border-b flex items-center justify-between">
+                                    <span>Notifications</span>
+                                    <a href="/notifications" class="text-xs text-primary-600 hover:text-primary-800">View All</a>
+                                </div>
+                                <div class="max-h-64 overflow-y-auto" id="notifications-list">
+                                    <div class="px-4 py-3 text-sm text-gray-500 text-center">
+                                        Loading notifications...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 <div class="flex items-center">
                     <div class="relative">
                         <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" onclick="toggleDropdown('user-menu')">
@@ -125,6 +176,8 @@
                 <a href="/dashboard" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Dashboard</a>
                 <a href="/employees" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Employees</a>
                 <a href="/payroll" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Payroll</a>
+                <a href="/attendance" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Attendance</a>
+                <a href="/loans" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Loans</a>
                 <a href="/reports" class="block text-gray-600 hover:text-gray-900 px-2 py-1 text-base font-medium">Reports</a>
             </div>
         </div>
