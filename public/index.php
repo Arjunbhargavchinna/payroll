@@ -101,6 +101,9 @@ $router->addRoute('GET', '/payroll/periods', 'Payroll', 'periods');
 $router->addRoute('POST', '/payroll/periods', 'Payroll', 'periods');
 $router->addRoute('GET', '/payroll/process', 'Payroll', 'process');
 $router->addRoute('POST', '/payroll/process', 'Payroll', 'process');
+$router->addRoute('POST', '/payroll/reprocess', 'Payroll', 'reprocess');
+$router->addRoute('GET', '/payroll/calculate-salary', 'Payroll', 'calculateSalary');
+$router->addRoute('GET', '/payroll/advanced-calculator', 'Payroll', 'advancedCalculator');
 $router->addRoute('POST', '/payroll/lock-period', 'Payroll', 'lockPeriod');
 $router->addRoute('GET', '/payroll/payslip/{employeeId}/{periodId}', 'Payroll', 'payslip');
 
