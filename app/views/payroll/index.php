@@ -21,7 +21,7 @@ include __DIR__ . '/../layout/header.php';
                 <i class="fas fa-play-circle mr-2"></i>
                 Process Payroll
             </a>
-            <a href="/payroll/advanced-calculator" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+            <a href="/payroll/salary-calculator" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
                 <i class="fas fa-calculator mr-2"></i>
                 Salary Calculator
             </a>
@@ -109,7 +109,7 @@ include __DIR__ . '/../layout/header.php';
                 </div>
             </div>
             <div class="mt-4">
-                <a href="/payroll/advanced-calculator" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                <a href="/payroll/salary-calculator" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
                     Calculate →
                 </a>
             </div>

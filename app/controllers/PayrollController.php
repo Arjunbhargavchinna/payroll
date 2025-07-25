@@ -311,6 +311,15 @@ class PayrollController extends Controller {
         ]);
     }
     
+    public function salaryCalculator() {
+        $this->checkAuth();
+        $this->checkPermission('payroll');
+        
+        $this->loadView('payroll/salary-calculator', [
+            'csrf_token' => $this->generateCSRFToken()
+        ]);
+    }
+    
     private function handleCreatePeriod() {
         $data = $this->sanitizeInput($_POST);
         $csrfToken = $_POST['csrf_token'] ?? '';
