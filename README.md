@@ -1,6 +1,23 @@
-# PayrollPro - Enterprise Payroll Management System
+# Enterprise Payroll Management System
 
-A comprehensive, enterprise-grade Payroll Management System built with **Core PHP (OOP)** and **MySQL** following MVC architecture. This system provides complete payroll processing capabilities with advanced features for managing employees, salary structures, integrations, and generating reports.
+A comprehensive, enterprise-grade Payroll Management System built with **Core PHP (OOP)** and **MySQL** following MVC architecture. This system provides complete payroll processing capabilities with advanced features for managing employees, salary structures, and generating reports.
+
+## 🚀 Quick Start
+
+### Installation Steps
+
+1. **Upload Files**: Upload all files to your web server
+2. **Database Setup**: Import `database_setup.sql` to create the database
+3. **Configuration**: Update database credentials in `config/database.php`
+4. **Test System**: Run `test_system.php` to verify installation
+5. **Access System**: Navigate to your domain/public/ directory
+
+### Default Login
+- **URL**: `https://yourdomain.com/public/`
+- **Username**: `admin`
+- **Password**: `password`
+
+⚠️ **Important**: Change the default password after first login!
 
 ## 🚀 Features
 
@@ -11,7 +28,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Document upload and management
 - Photo and signature upload
 - Advanced search and filtering
-- Bulk import/export capabilities
 
 ### 📊 Payroll Processing
 - Automated salary computation
@@ -22,7 +38,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Loan EMI auto-deduction
 - Arrears and variable pay management
 - Payroll period management
-- Advanced formula engine with validation
 
 ### 💰 Salary Management
 - Flexible salary component master
@@ -30,7 +45,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Salary structure templates
 - Component-wise calculations
 - Earnings, deductions, and reimbursements
-- Real-time salary calculator
 
 ### 🏦 Compliance & Statutory
 - **Provident Fund (PF) Module**
@@ -48,14 +62,12 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
   - Investment declarations
   - Auto TDS calculations
   - Form 16 data preparation
-  - Tax calculator utility
 
 ### 💳 Loan & Advance Management
 - Multiple loan types
 - EMI calculations and deductions
 - Outstanding balance tracking
 - Partial payments and closures
-- Loan performance analytics
 
 ### 📈 Comprehensive Reports
 - Salary registers
@@ -64,7 +76,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Tax reports (TDS, PF, ESI)
 - Custom report builder
 - Multiple export formats (Excel, CSV, PDF)
-- Advanced query builder
 
 ### 🔐 Security & Access Control
 - Role-based access control
@@ -73,7 +84,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Session management
 - CSRF protection
 - Input validation and sanitization
-- API key management
 
 ### 📱 Modern UI/UX
 - Responsive design with Tailwind CSS
@@ -81,69 +91,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - Real-time data updates
 - Mobile-friendly interface
 - Modern card-based layouts
-- Advanced formula editor
-
-### 🕒 Attendance Management
-- Daily attendance tracking
-- Bulk attendance marking
-- Attendance reports and analytics
-- Integration with payroll processing
-- Mobile-friendly attendance interface
-- Biometric device integration support
-
-### 💳 Enhanced Loan Management
-- Multiple loan types with different terms
-- Automated EMI calculations
-- Payment tracking and history
-- Outstanding balance management
-- Loan performance analytics
-
-### 🔗 System Integrations
-- **External HRMS Integration**
-  - Employee data synchronization
-  - Real-time updates via webhooks
-  
-- **Banking Integration**
-  - Direct salary transfers
-  - Multiple bank format support
-  
-- **Biometric Attendance**
-  - Device connectivity
-  - Real-time attendance sync
-  
-- **Email & SMS Notifications**
-  - Automated payslip delivery
-  - System notifications
-  
-- **Accounting Software Integration**
-  - Tally, QuickBooks connectivity
-  - Financial data synchronization
-
-### 📊 Advanced Features
-- **Formula Engine**
-  - Visual formula builder
-  - Complex calculation support
-  - Formula validation and testing
-  
-- **Custom Query Builder**
-  - SQL query interface
-  - Saved query templates
-  - Real-time result preview
-  
-- **Bulk Operations**
-  - Mass data import/export
-  - Template generation
-  - Error reporting and validation
-  
-- **API Integration**
-  - RESTful API endpoints
-  - API key management
-  - Webhook support
-  
-- **Auto Installation**
-  - One-click setup
-  - System requirement validation
-  - Database migration automation
 
 ## 🛠️ Technical Architecture
 
@@ -153,7 +100,6 @@ A comprehensive, enterprise-grade Payroll Management System built with **Core PH
 - **Frontend**: HTML5, Tailwind CSS, Vanilla JavaScript
 - **Architecture**: MVC (Model-View-Controller)
 - **Security**: BCrypt password hashing, PDO prepared statements
-- **Integration**: REST API, Webhooks, CSV/JSON import/export
 
 ### Folder Structure
 ```
@@ -162,7 +108,6 @@ payroll-system/
 │   ├── controllers/          # Application controllers
 │   ├── models/              # Data models
 │   ├── views/               # View templates
-│   ├── utilities/           # Utility classes
 │   └── core/                # Core framework classes
 ├── config/                  # Configuration files
 ├── public/                  # Public assets and entry point
@@ -170,11 +115,9 @@ payroll-system/
 │   ├── js/                 # JavaScript files
 │   └── index.php           # Front controller
 ├── uploads/                # File uploads
-├── database/               # Database migrations
 ├── docs/                   # Documentation
 ├── lang/                   # Language files
-├── install.php            # Automated installer
-├── .installed            # Installation marker
+├── database.sql           # Database schema
 └── README.md              # This file
 ```
 
@@ -184,7 +127,6 @@ payroll-system/
 - **MySQL**: 8.0 or higher
 - **Web Server**: Apache/Nginx
 - **Extensions**: PDO, GD, OpenSSL, FileInfo
-- **Memory**: Minimum 512MB RAM (2GB recommended)
 
 ## 🚀 Installation
 
@@ -196,19 +138,6 @@ cd payroll-system
 
 # Or download and extract the ZIP file
 ```
-
-### Option 1: Automated Installation (Recommended)
-```bash
-# Run the automated installer
-php install.php
-
-# Follow the prompts to configure:
-# - Database connection
-# - Admin account
-# - System settings
-```
-
-### Option 2: Manual Installation
 
 ### 2. Database Setup
 ```bash
@@ -266,21 +195,11 @@ chmod -R 755 app/
 ### 6. Access the Application
 - Open your web browser
 - Navigate to your domain/server address
-- If not installed, you'll be redirected to the setup wizard
 - Default login credentials:
   - **Username**: `admin`
   - **Password**: `password`
 
 ## 📖 Usage Guide
-
-### Quick Start
-1. **Run installer** using `php install.php` or access `/setup` in browser
-2. **Configure database** connection and admin account
-3. **Login** with created admin credentials
-4. **Setup master data** (departments, designations, components)
-5. **Add employees** and assign salary structures
-6. **Process payroll** for the first time
-7. **Generate reports** and configure integrations
 
 ### Initial Setup
 1. **Login** with default admin credentials
@@ -290,14 +209,12 @@ chmod -R 755 app/
    - Configure salary components
    - Set up tax slabs
    - Add holidays and leave types
-   - Configure integrations
 
 ### Employee Management
 1. **Add employees** through the employee management module
 2. **Upload documents** and photos as needed
 3. **Assign salary structures** to employees
 4. **Configure reporting relationships**
-5. **Import bulk data** using CSV templates
 
 ### Payroll Processing
 1. **Create payroll periods** (monthly/quarterly)
@@ -305,22 +222,12 @@ chmod -R 755 app/
 3. **Process payroll** for selected employees
 4. **Review and approve** salary calculations
 5. **Generate payslips** and reports
-6. **Export bank transfer** files
 
 ### Report Generation
 1. Access the **Reports** module
 2. Select desired report type
 3. Apply filters (period, department, etc.)
 4. **Export** in preferred format
-
-### System Integration
-1. Navigate to **Integrations** module
-2. **Configure** external system connections
-3. **Test** integration connectivity
-4. **Sync data** between systems
-5. **Monitor** integration logs
-6. **Setup webhooks** for real-time updates
-7. **Manage API keys** for external access
 
 ## 🔧 Configuration Options
 
@@ -344,16 +251,6 @@ define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
 define('RECORDS_PER_PAGE', 25);
 ```
 
-### Integration Settings
-```php
-// Email configuration
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 587);
-
-// API settings
-define('API_RATE_LIMIT', 1000);
-```
-
 ## 🔒 Security Features
 
 - **Authentication**: Secure login with session management
@@ -363,8 +260,6 @@ define('API_RATE_LIMIT', 1000);
 - **Input Validation**: Server-side data sanitization
 - **Password Security**: BCrypt hashing
 - **Audit Trail**: Complete activity logging
-- **API Security**: Token-based authentication
-- **Webhook Verification**: Signature validation
 
 ## 📊 Default Data
 
@@ -375,8 +270,6 @@ The system comes with:
 - **3 Sample employees** with salary structures
 - **Tax slabs** for FY 2024-25
 - **Basic holiday calendar**
-- **4 Loan types** with different terms
-- **5 Leave types** with policies
 
 ## 🤝 Contributing
 
@@ -385,8 +278,6 @@ The system comes with:
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
-
-Please ensure all new features include proper documentation and tests.
 
 ## 📄 License
 
@@ -397,8 +288,6 @@ This project is open source and available under the [MIT License](LICENSE).
 For support and questions:
 - Check the documentation in `/docs/`
 - Review the code comments
-- Use the built-in help system
-- Check integration logs for troubleshooting
 - Create an issue for bugs or feature requests
 
 ## 🚀 Future Enhancements
@@ -411,12 +300,7 @@ Planned features for future releases:
 - **Advanced workflow** management
 - **Biometric integration**
 - **Cloud deployment** options
-- **Machine learning** for predictive analytics
-- **Blockchain** for secure transactions
-- **Mobile applications** for iOS and Android
-- **Advanced reporting** with charts and graphs
-- **Real-time notifications** and alerts
 
 ---
 
-**Built with ❤️ for modern enterprises - PayrollPro v1.0**
+**Built with ❤️ for modern enterprises**
