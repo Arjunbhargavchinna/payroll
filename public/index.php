@@ -182,19 +182,6 @@ $router->addRoute('POST', '/users/create', 'User', 'create');
 $router->addRoute('GET', '/users/{id}/edit', 'User', 'edit');
 $router->addRoute('POST', '/users/{id}/edit', 'User', 'edit');
 
-// Bulk Operations routes
-$router->addRoute('GET', '/bulk-operations', 'BulkOperations', 'index');
-$router->addRoute('GET', '/bulk-operations/employees', 'BulkOperations', 'employees');
-$router->addRoute('POST', '/bulk-operations/employees', 'BulkOperations', 'employees');
-$router->addRoute('GET', '/bulk-operations/payroll', 'BulkOperations', 'payroll');
-$router->addRoute('POST', '/bulk-operations/payroll', 'BulkOperations', 'payroll');
-$router->addRoute('GET', '/bulk-operations/attendance', 'BulkOperations', 'attendance');
-$router->addRoute('POST', '/bulk-operations/attendance', 'BulkOperations', 'attendance');
-$router->addRoute('GET', '/bulk-operations/data-management', 'BulkOperations', 'dataManagement');
-$router->addRoute('POST', '/bulk-operations/data-management', 'BulkOperations', 'dataManagement');
-$router->addRoute('GET', '/bulk-operations/status', 'BulkOperations', 'getOperationStatus');
-$router->addRoute('POST', '/bulk-operations/cancel', 'BulkOperations', 'cancelOperation');
-
 // API routes for AJAX calls
 $router->addRoute('GET', '/api/dashboard-widgets', 'Dashboard', 'getWidgetData');
 $router->addRoute('GET', '/api/attendance-summary', 'Attendance', 'getSummary');
