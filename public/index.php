@@ -1,6 +1,7 @@
 <?php
 /**
  * Front Controller - Entry point for the application
+ * Enhanced with real-time integration and customization support
  */
 
 session_start();
@@ -10,6 +11,8 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../app/core/Controller.php';
 require_once __DIR__ . '/../app/core/Model.php';
+require_once __DIR__ . '/../app/models/SystemSettings.php';
+require_once __DIR__ . '/../app/models/ModuleManager.php';
 
 class Router {
     private $routes = [];
@@ -192,6 +195,21 @@ $router->addRoute('GET', '/api/employee-search', 'Api', 'employeeSearch');
 $router->addRoute('GET', '/api/salary-calculator', 'Api', 'salaryCalculator');
 
 // Notification routes
+$router->addRoute('GET', '/api/documentation', 'Api', 'documentation');
+$router->addRoute('GET', '/api/generate-key', 'Api', 'generateApiKey');
+$router->addRoute('POST', '/api/generate-key', 'Api', 'generateApiKey');
+$router->addRoute('GET', '/api/employees', 'Api', 'employees');
+$router->addRoute('POST', '/api/employees', 'Api', 'employees');
+$router->addRoute('PUT', '/api/employees', 'Api', 'employees');
+$router->addRoute('DELETE', '/api/employees', 'Api', 'employees');
+$router->addRoute('GET', '/api/payroll', 'Api', 'payroll');
+$router->addRoute('POST', '/api/payroll', 'Api', 'payroll');
+$router->addRoute('GET', '/api/attendance', 'Api', 'attendance');
+$router->addRoute('POST', '/api/attendance', 'Api', 'attendance');
+$router->addRoute('PUT', '/api/attendance', 'Api', 'attendance');
+$router->addRoute('POST', '/api/sync', 'Api', 'sync');
+$router->addRoute('GET', '/api/stream', 'Api', 'stream');
+$router->addRoute('POST', '/webhook/{source}', 'Api', 'webhook');
 $router->addRoute('GET', '/notifications', 'Notification', 'index');
 $router->addRoute('POST', '/notifications/mark-read', 'Notification', 'markRead');
 $router->addRoute('POST', '/notifications/mark-all-read', 'Notification', 'markAllRead');
@@ -211,6 +229,18 @@ $router->addRoute('POST', '/esi/reports', 'ESI', 'esiReports');
 $router->addRoute('GET', '/esi/settings', 'ESI', 'esiSettings');
 $router->addRoute('POST', '/esi/settings', 'ESI', 'esiSettings');
 
+// Customization routes
+$router->addRoute('GET', '/customization', 'Customization', 'index');
+$router->addRoute('GET', '/customization/modules', 'Customization', 'modules');
+$router->addRoute('POST', '/customization/modules', 'Customization', 'modules');
+$router->addRoute('GET', '/customization/themes', 'Customization', 'themes');
+$router->addRoute('POST', '/customization/themes', 'Customization', 'themes');
+$router->addRoute('GET', '/customization/navigation', 'Customization', 'navigation');
+$router->addRoute('POST', '/customization/navigation', 'Customization', 'navigation');
+$router->addRoute('GET', '/customization/branding', 'Customization', 'branding');
+$router->addRoute('POST', '/customization/branding', 'Customization', 'branding');
+$router->addRoute('GET', '/customization/auto-connect', 'Customization', 'autoConnect');
+
 // Additional API routes
 $router->addRoute('GET', '/api/generate-employee-code', 'Employee', 'generateEmployeeCode');
 $router->addRoute('POST', '/employees/bulk-update-salary', 'Employee', 'bulkUpdateSalary');
@@ -226,6 +256,15 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js|ico|svg)$/', $requestUri)) {
         readfile($filePath);
         exit;
     }
+}
+
+// Initialize system settings and modules
+try {
+    $db = new Database();
+    $systemSettings = new SystemSettings($db);
+    $moduleManager = new ModuleManager($db);
+} catch (Exception $e) {
+    error_log("System initialization error: " . $e->getMessage());
 }
 
 // Redirect root to dashboard if logged in, otherwise to login
